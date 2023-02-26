@@ -1,0 +1,21 @@
+#include <amxmodx>
+
+#define PLUGIN_NAME "ILLUSION PLUGINS: Block JoinTeam/Radio"
+#define PLUGIN_VERSION "1.0"
+#define PLUGIN_AUTHOR "illusion"
+
+public plugin_init()
+{
+	register_plugin(PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_AUTHOR)
+	register_clcmd("chooseteam", "CmdBlock")
+	register_concmd("jointeam", "CmdBlock")
+	register_concmd("radio1", "CmdBlock")
+	register_concmd("radio2", "CmdBlock")
+	register_concmd("radio3", "CmdBlock")
+}
+
+public CmdBlock(id)
+{
+	client_print(id, print_center, "** Blocked **")
+	return PLUGIN_HANDLED
+}
