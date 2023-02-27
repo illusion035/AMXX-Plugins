@@ -1,3 +1,7 @@
+// Plugin Created by illusion
+// Credits: Huehue
+// Needed Version: AMXX 1.10
+
 #include <amxmodx>
 #include <geoip>
 
@@ -16,7 +20,7 @@ public plugin_init()
     bind_pcvar_num(create_cvar("demo_recorder", "1", FCVAR_NONE, "Enable/Disable the auto demo recorder"), g_pC_DemoRecorder)
     bind_pcvar_string(create_cvar("demo_recorder_chat_prefix", "^1[^3Danger^1-^4CS^1]", FCVAR_NONE, "Prefix appears in chat"), g_pC_ChatPrefix, charsmax(g_pC_ChatPrefix))
     bind_pcvar_string(create_cvar("demo_recorder_name", "DangerCS_HNS", FCVAR_NONE, "Demo Name"), g_pC_DemoName, charsmax(g_pC_DemoName))
-    bind_pcvar_float(create_cvar("demo_recorder_start_after", "15.0", FCVAR_NONE, "After how many seconds demo will start"), g_pC_StartDemoAfter)
+    bind_pcvar_float(create_cvar("demo_recorder_start_after", "10.0", FCVAR_NONE, "After how many seconds demo will start"), g_pC_StartDemoAfter)
 
     AutoExecConfig(true, "Illusin_DemoRecorder")
 }
@@ -37,18 +41,16 @@ public RecordingDemo(id)
 
     client_cmd(id, "stop")
 
-    static szTime[64], szCountry[64], szPlayerIP[MAX_IP_LENGTH], szMap[32]
+    static szTime[64], szCountry[64], szPlayerIP[MAX_IP_LENGTH]
 
     get_time("%H:%M:%S ^1&^4 %d/%m/%Y", szTime, charsmax(szTime))
 
     get_user_ip(id, szPlayerIP, charsmax(szPlayerIP), .without_port = 1)
     geoip_country_ex(szPlayerIP, szCountry, charsmax(szCountry))
 
-	get_mapname(szMap, charsmax(szMap))
-
     client_cmd(id, "record %s", g_pC_DemoName)
 
     client_print_color(id, print_team_default, "%s ^1[^3NickName^1: ^4%n^1] ^1[^3SteamID^1: ^4%s^1]", g_pC_ChatPrefix, id, g_szAuthID[id])
     client_print_color(id, print_team_default, "%s ^1[^3Recording Demo^1: ^4%s^1] ^1[^3Time/Date^1: ^4%s^1]", g_pC_ChatPrefix, g_pC_DemoName, szTime)
-    client_print_color(id, print_team_default, "%s ^1[^3Current Map^1: ^4%s^1] ^1[^3Country^1: ^4%s^1]", g_pC_ChatPrefix, szMap, szCountry)
+    client_print_color(id, print_team_default, "%s ^1[^3Current Map^1: ^4%s^1] ^1[^3Country^1: ^4%s^1]", g_pC_ChatPrefix, MapName, szCountry)
 }
