@@ -18,9 +18,9 @@ public plugin_init()
     register_plugin(PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_AUTHOR)
 
     bind_pcvar_num(create_cvar("demo_recorder", "1", FCVAR_NONE, "Enable/Disable the auto demo recorder"), g_pC_DemoRecorder)
-    bind_pcvar_string(create_cvar("demo_recorder_chat_prefix", "^1[^3Danger^1-^4CS^1]", FCVAR_NONE, "Prefix appears in chat"), g_pC_ChatPrefix, charsmax(g_pC_ChatPrefix))
-    bind_pcvar_string(create_cvar("demo_recorder_name", "DangerCS_HNS", FCVAR_NONE, "Demo Name"), g_pC_DemoName, charsmax(g_pC_DemoName))
-    bind_pcvar_float(create_cvar("demo_recorder_start_after", "10.0", FCVAR_NONE, "After how many seconds demo will start"), g_pC_StartDemoAfter)
+    bind_pcvar_string(create_cvar("demo_recorder_chat_prefix", "^1[^3Your^4Prefix^1]", FCVAR_NONE, "Prefix appears in chat"), g_pC_ChatPrefix, charsmax(g_pC_ChatPrefix))
+    bind_pcvar_string(create_cvar("demo_recorder_name", "DemoRecorder_Name", FCVAR_NONE, "Demo Name"), g_pC_DemoName, charsmax(g_pC_DemoName))
+    bind_pcvar_float(create_cvar("demo_recorder_start_after", "5.0", FCVAR_NONE, "After how many seconds demo will start"), g_pC_StartDemoAfter)
 
     AutoExecConfig(true, "Illusion_DemoRecorder")
 }
