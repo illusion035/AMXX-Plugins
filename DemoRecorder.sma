@@ -22,7 +22,7 @@ public plugin_init()
     bind_pcvar_string(create_cvar("demo_recorder_name", "DangerCS_HNS", FCVAR_NONE, "Demo Name"), g_pC_DemoName, charsmax(g_pC_DemoName))
     bind_pcvar_float(create_cvar("demo_recorder_start_after", "10.0", FCVAR_NONE, "After how many seconds demo will start"), g_pC_StartDemoAfter)
 
-    AutoExecConfig(true, "Illusin_DemoRecorder")
+    AutoExecConfig(true, "Illusion_DemoRecorder")
 }
 
 public client_authorized(id, const authid[])
